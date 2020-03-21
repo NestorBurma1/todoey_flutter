@@ -1,22 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todoeyflutter/Data/data.dart';
 import 'package:todoeyflutter/screens/add_task_screen.dart';
 import 'package:todoeyflutter/widgets/tasks.dart';
+import 'package:provider/provider.dart';
 
 class TasksScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
-            isScrollControlled: true, context: context, builder: (context) => SingleChildScrollView(
-              child:Container(
-                padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+            isScrollControlled: true,
+            context: context,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
                 child: AddTaskScreen(),
-              )
-          ),);
+              ),
+            ),
+          );
         },
         backgroundColor: Colors.blueAccent,
         child: Icon(Icons.add),
@@ -51,7 +56,7 @@ class TasksScreen extends StatelessWidget {
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  '12 Tasks',
+                  '${Provider.of<Data>(context).taskCount} Tasks',
                   style: TextStyle(color: Colors.white, fontSize: 18.0),
                 ),
               ],

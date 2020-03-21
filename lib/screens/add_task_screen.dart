@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoeyflutter/Data/data.dart';
 
 class AddTaskScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    final myData = Provider.of<Data>(context);
+    String newTitle;
     return Container(
       color: Color(0xFF757575),
       child: Container(
@@ -29,6 +34,9 @@ class AddTaskScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   TextField(
+                    onChanged: (value) {
+                      newTitle = value;
+                    },
                     textAlign: TextAlign.center,
                     autofocus: true,
                     decoration: InputDecoration(
@@ -44,7 +52,10 @@ class AddTaskScreen extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).copyWith().size.width,
                     child: FlatButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        myData.addTask(newTitle);
+                        Navigator.pop(context);
+                      },
                       textColor: Colors.white,
                       child: Text('Add'),
                       color: Colors.blueAccent,
