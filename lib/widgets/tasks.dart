@@ -11,14 +11,27 @@ class TasksList extends StatelessWidget {
         return ListView.builder(
           itemBuilder: (context, index) {
             final task = tasksData.tasks[index];
-            return TileTask(
-                taskTile: task.name,
-                isChecked: task.isDone,
-                checkBoxCallback: (bool checkBoxState) {
+            return Dismissible(
+              background: Container(
+                alignment: Alignment.centerRight,
+                color: Colors.red,
+                child: Icon(
+                  Icons.cancel,
+                ),
+              ),
+              key: Key(tasksData.tasks[index].name),
+              onDismissed: (ind) {
+                tasksData.deleteTask(index);
+              },
+              child: TileTask(
+                  taskTile: task.name,
+                  isChecked: task.isDone,
+                  checkBoxCallback: (checkState) {
 //             setState(() {
-                  tasksData.updateTask(task);
+                    tasksData.updateTask(task);
 //            });
-                });
+                  }),
+            );
           },
           itemCount: tasksData.taskCount,
         );

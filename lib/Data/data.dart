@@ -13,6 +13,11 @@ class Data extends ChangeNotifier{
     notifyListeners();
   }
 
+  void deleteTask(int index){
+    _tasks.removeAt(index);
+    notifyListeners();
+  }
+
 //  void toggleDone(int index){
 //    _tasks[index].isDone = !_tasks[index].isDone;
 //    notifyListeners();
