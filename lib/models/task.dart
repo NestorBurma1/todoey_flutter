@@ -4,5 +4,7 @@ class Task {
   final String name;
   bool isDone;
 
-
+  void toggleDone() {
+    isDone = !isDone;
+  }
 }
