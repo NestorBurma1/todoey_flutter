@@ -30,7 +30,9 @@ class TasksList extends StatelessWidget {
 //             setState(() {
                     tasksData.updateTask(task);
 //            });
-                  }),
+                  }, onLongPressCallback: (){
+                    tasksData.deleteTask(index);
+              },),
             );
           },
           itemCount: tasksData.taskCount,
